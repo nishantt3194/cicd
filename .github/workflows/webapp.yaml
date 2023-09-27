@@ -29,5 +29,5 @@ jobs:
           docker tag my-app:latest registry.digitalocean.com/Production/my-app:latest
       
       - name: Push Image to DO Container Registry
-        run: docker push registry.digitalocean.com/Production/my-app:latest
+        run: docker push registry.digitalocean.com/production/my-app:latest
 
