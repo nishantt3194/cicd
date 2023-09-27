@@ -1,0 +1,33 @@
+name: Build and Publish Manually 
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Image'
+        required: true
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Build Image
+        run: docker build -t my-app:latest .
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{  secrets.DIGITALOCEAN_ACCESS_TOKEN  }}
+      
+      - name: Log into DO container Registry
+        run: doctl registry login --expiry-seconds 600
+      
+      - name: Tag image
+        run:  
+          docker tag my-app:latest registry.digitalocean.com/Production/my-app:latest
+      
+      - name: Push Image to DO Container Registry
+        run: docker push registry.digitalocean.com/Production/my-app:latest
+
