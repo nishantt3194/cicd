@@ -26,7 +26,7 @@ jobs:
       
       - name: Tag image
         run:  
-          docker push registry.digitalocean.com/demo-cicd-docker-registry/production/my-app:latest
+          docker push registry.digitalocean.com/demo-cicd-docker-registry/my-app:latest
 
       
       - name: Push Image to DO Container Registry
