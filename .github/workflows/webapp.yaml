@@ -30,5 +30,5 @@ jobs:
 
       
       - name: Push Image to DO Container Registry
-        run: docker push registry.digitalocean.com/production/my-app:latest
+        run: docker push registry.digitalocean.com/demo-cicd-docker-registry/my-app:latest
 
